@@ -7,7 +7,7 @@ export const AssignmentDetails: FC<{
   deleteHandler: (a: Assignment) => void,
 }> = ({ assignment, deleteHandler }) => {
   return (
-    <div>
+    <>
       <div className="row">
         <div className="col">
           <h3>{assignment.title}</h3>
@@ -19,6 +19,6 @@ export const AssignmentDetails: FC<{
       </div>
       <div>{assignment.description}</div>
       <div>Points: {assignment.points}</div>
-    </div>
+    </>
   )
 }

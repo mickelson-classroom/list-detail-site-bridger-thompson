@@ -32,25 +32,29 @@ export const AddAssignment: FC<{
     </div>
   )
   return (
-    <div className="text-center m-3">
-      <button className="btn btn-success"
-        onClick={submitHandler}>Submit</button>
+    <form className="text-center mt-3 border rounded p-2 bg-white" onSubmit={submitHandler}>
       <div className="text-start">
-        <div>Title:</div>
+        <label htmlFor="titleInput" className="form-label">Title:</label>
         <input type="text"
           className="form-control"
+          id="titleInput"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)} />
-        <div>Description:</div>
+        <label htmlFor="descriptionInput" className="form-label">Description:</label>
         <input type="text"
           className="form-control"
+          id="descriptionInput"
           value={newDescription}
-          onChange={(e) => setNewDescription(e.target.value)} /><div>Title:</div>
+          onChange={(e) => setNewDescription(e.target.value)} />
+        <label htmlFor="pointsInput" className="form-label">Points:</label>
         <input type="number"
           className="form-control"
+          id="pointsInput"
           value={newPoints}
           onChange={(e) => setNewPoints(Number(e.target.value))} />
       </div>
-    </div>
+      <button className="btn btn-success mt-2"
+        type="submit">Submit</button>
+    </form>
   )
 }

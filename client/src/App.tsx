@@ -34,7 +34,7 @@ export const App = () => {
     <div className="container">
       <h1 className="text-center">Homework</h1>
       <div className="row">
-        <div className="col-4 border rounded pb-3">
+        <div className="col-md-4 border rounded pb-3 bg-light">
           <FilterAssignments filter={filter} setFilter={setFilter} />
           <AssignmentList
             assignments={filteredAssignments}
@@ -42,7 +42,7 @@ export const App = () => {
             setSelectedAssignments={setSelectedAssignment} />
           <AddAssignment addAssignment={addAssignment} />
         </div>
-        <div className="col">
+        <div className="col-md mt-2 md-md-0">
           {selectedAssignment &&
             <AssignmentDetails assignment={selectedAssignment}
               deleteHandler={deleteAssignment} />
