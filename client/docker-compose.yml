@@ -7,7 +7,6 @@ services:
 
   swag:
     image: lscr.io/linuxserver/swag
-    container_name: swag
     cap_add:
       - NET_ADMIN
     env_file:
@@ -18,9 +17,10 @@ services:
       - TZ=America/Denver
       - URL=bridgert.duckdns.org
       - VALIDATION=duckdns
-      - STAGING=true 
+      - STAGING=false 
     volumes:
       - /home/bridger/data/swag:/config
+      - ./default.conf:/config/nginx/site-confs/default.conf 
     ports:
-      - 3003:80
+      - 0.0.0.0:3003:443
     restart: unless-stopped
