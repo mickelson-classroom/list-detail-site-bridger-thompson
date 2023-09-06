@@ -35,11 +35,12 @@ export const AssignmentDetails: FC<{
               </div>
               <div>{assignment.description}</div>
               <div>Points: {assignment.points}</div>
+              <div>{assignment.tags.join(",")}</div>
             </div>
           </div>
-          <Tags assignmentTags={tags} setAssignmentTags={setTagsHandler} />
         </div>
       </div>
+      <Tags assignmentTags={tags} setAssignmentTags={setTagsHandler} />
     </div>
   )
 }

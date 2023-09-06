@@ -27,7 +27,7 @@ export const AddAssignment: FC<{
   return (
     <>
       <div className="text-center mt-2">
-        <button className="btn btn-secondary"
+        <button className="btn btn-outline-secondary"
           type="button"
           id="modalStart"
           data-bs-toggle="modal"
@@ -40,7 +40,7 @@ export const AddAssignment: FC<{
               <h5 className="modal-title fs-5">Add Assignment</h5>
             </div>
             <div className="modal-body">
-              <div className="text-center mt-3 border rounded p-2 bg-white">
+              <div className="text-center mt-3 bg-white">
                 <div className="text-start">
                   <label htmlFor="titleInput" className="form-label">Title:</label>
                   <input type="text"
