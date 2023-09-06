@@ -15,7 +15,8 @@ export const AddAssignment: FC<{
       const newAssignment: Assignment = {
         title: newTitle,
         description: newDescription,
-        points: newPoints
+        points: newPoints,
+        tags: []
       };
       addAssignment(newAssignment)
       setNewTitle("")

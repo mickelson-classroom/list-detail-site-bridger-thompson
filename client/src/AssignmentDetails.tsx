@@ -1,11 +1,18 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Assignment } from "./App";
+import { Tags } from "./Tags";
 
 
 export const AssignmentDetails: FC<{
   assignment: Assignment,
   deleteHandler: (a: Assignment) => void,
 }> = ({ assignment, deleteHandler }) => {
+  const [tags, setTags] = useState(assignment.tags)
+  const setTagsHandler = (tags: string[]) => {
+    assignment.tags = tags
+    setTags(tags)
+  }
+  console.log(assignment)
   return (
     <div>
       <div className="accordion" id="assignmentDetailsAccordion">
@@ -30,6 +37,7 @@ export const AssignmentDetails: FC<{
               <div>Points: {assignment.points}</div>
             </div>
           </div>
+          <Tags assignmentTags={tags} setAssignmentTags={setTagsHandler} />
         </div>
       </div>
     </div>

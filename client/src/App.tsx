@@ -8,6 +8,7 @@ export interface Assignment {
   title: string;
   description: string;
   points: number;
+  tags: string[];
 }
 
 export const App = () => {
@@ -16,6 +17,7 @@ export const App = () => {
       title: "HW1",
       description: "Read Chapter 1",
       points: 10,
+      tags: []
     }
   ]);
   const [selectedAssignment, setSelectedAssignment] = useState<Assignment>();
