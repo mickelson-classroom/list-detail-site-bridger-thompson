@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 
-
 export const Tags: FC<{
   setAssignmentTags: (t: string[]) => void,
   assignmentTags: string[]
@@ -27,17 +26,29 @@ export const Tags: FC<{
       setTags([...tags, newTag])
     }
   }
+
+  const removeHandler = (tag: string) => {
+    setAssignmentTags(assignmentTags.filter(t => t !== tag))
+    setTags(tags.filter(t => t !== tag))
+  }
   return (
     <div className="d-flex flex-wrap mt-3">
       {tags.map((t) => (
-        <div className={`card btn me-2 ${assignmentTags.includes(t) && "border-success bg-light"}`}
+        <div className="card btn me-2"
           onClick={() => clickHandler(t)}>
-          <div className="card-body">
-            <div className="card-title">
-              {t}
+          <div className="card-body pt-0 pe-0">
+            <div className="text-end small">
+              <button
+                type="button"
+                className="btn-close"
+                aria-label="Close"
+                onClick={(e) => { e.stopPropagation(); removeHandler(t) }}
+              />
             </div>
+            <div className="card-title pe-3">{t}</div>
           </div>
         </div>
+
       ))}
       <button className="btn btn-outline-secondary fs-3"
         type="button"
