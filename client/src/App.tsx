@@ -8,6 +8,8 @@ export interface Assignment {
   title: string;
   description: string;
   points: number;
+  due: string;
+  allowedAttempts: number;
   tags: string[];
 }
 
@@ -17,6 +19,8 @@ export const App = () => {
       title: "HW1",
       description: "Read Chapter 1",
       points: 10,
+      due: new Date().toString(),
+      allowedAttempts: 1,
       tags: []
     }
   ]);
