@@ -26,11 +26,10 @@ export const AddAssignment: FC<{
       setNewTitle("")
       setNewDescription("")
       setNewAllowedAttempts(1)
-      setNewDueDate(undefined)
+      setNewDueDate("")
       setNewPoints(10)
     }
   }
-
   return (
     <>
       <div className="text-center mt-2">
@@ -47,7 +46,7 @@ export const AddAssignment: FC<{
               <h5 className="modal-title fs-5">Add Assignment</h5>
             </div>
             <div className="modal-body">
-              <form className="text-center mt-3 bg-white" onSubmit={submitHandler}>
+              <form className="text-center mt-3 bg-white needs-validation" onSubmit={submitHandler} noValidate>
                 <div className="text-start">
                   <div className="mb-3">
                     <label htmlFor="titleInput" className="form-label">Title:</label>

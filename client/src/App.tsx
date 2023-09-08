@@ -19,7 +19,7 @@ export const App = () => {
       title: "HW1",
       description: "Read Chapter 1",
       points: 10,
-      due: new Date().toString(),
+      due: "2023-09-08",
       allowedAttempts: 1,
       tags: []
     }

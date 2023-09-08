@@ -34,7 +34,7 @@ export const Tags: FC<{
   return (
     <div className="d-flex flex-wrap mt-3">
       {tags.map((t) => (
-        <div className="card btn me-2"
+        <div className="card btn me-2" key={t}
           onClick={() => clickHandler(t)}>
           <div className="card-body pt-0 pe-0">
             <div className="text-end small">
