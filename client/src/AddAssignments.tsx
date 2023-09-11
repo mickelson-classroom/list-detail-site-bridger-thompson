@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { Assignment } from "./App";
+import GenericTextInput from "./components/GenericTextInput";
 
 
 export const AddAssignment: FC<{
@@ -49,35 +50,22 @@ export const AddAssignment: FC<{
               <form className="text-center mt-3 bg-white needs-validation" onSubmit={submitHandler} noValidate>
                 <div className="text-start">
                   <div className="mb-3">
-                    <label htmlFor="titleInput" className="form-label">Title:</label>
-                    <input
-                      type="text"
-                      className={`form-control ${newTitle ? 'is-valid' : 'is-invalid'}`}
+                    <GenericTextInput
                       id="titleInput"
+                      label="Title"
                       value={newTitle}
-                      onChange={(e) => setNewTitle(e.target.value)}
-                      required
-                    />
-                    <div className="invalid-feedback">Title is required.</div>
-                    <div className="valid-feedback">
-                      Looks good!
-                    </div>
+                      isValid={newTitle.length > 0}
+                      invalidMessage="Title is required"
+                      onChange={(value) => setNewTitle(value)} />
                   </div>
-
                   <div className="mb-3">
-                    <label htmlFor="descriptionInput" className="form-label">Description:</label>
-                    <input
-                      type="text"
-                      className={`form-control ${newDescription ? 'is-valid' : 'is-invalid'}`}
+                    <GenericTextInput
                       id="descriptionInput"
+                      label="Description"
                       value={newDescription}
-                      onChange={(e) => setNewDescription(e.target.value)}
-                      required
-                    />
-                    <div className="invalid-feedback">Description is required.</div>
-                    <div className="valid-feedback">
-                      Looks good!
-                    </div>
+                      isValid={newDescription.length > 0}
+                      invalidMessage="Description is required"
+                      onChange={(value) => setNewDescription(value)} />
                   </div>
 
                   <div className="row mb-3">

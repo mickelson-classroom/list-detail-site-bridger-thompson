@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { Assignment } from "./App";
 import { Tags } from "./Tags";
+import GenericTextInput from "./components/GenericTextInput";
 
 export const AssignmentDetails: FC<{
   assignment: Assignment,
@@ -36,17 +37,13 @@ export const AssignmentDetails: FC<{
         <div className="row">
           <div className="col">
             {isEditing ? (
-              <div>
-                <input
-                  type="text"
-                  className={`form-control ${editedTitle ? 'is-valid' : 'is-invalid'}`}
-                  value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                  required
-                />
-                <div className="valid-feedback">Looks good!</div>
-                <div className="invalid-feedback">Title is required.</div>
-              </div>
+              <GenericTextInput
+                id="titleInput"
+                label="Title"
+                value={editedTitle}
+                isValid={editedTitle.length > 0}
+                invalidMessage="Title is required"
+                onChange={(value) => setEditedTitle(value)} />
             ) : (
               <h3>{assignment.title}</h3>
             )}
@@ -71,16 +68,13 @@ export const AssignmentDetails: FC<{
           </div>
         </div>
         {isEditing ? (
-          <div>
-            <textarea
-              className={`form-control ${editedDescription ? 'is-valid' : 'is-invalid'}`}
-              value={editedDescription}
-              onChange={(e) => setEditedDescription(e.target.value)}
-              required
-            />
-            <div className="valid-feedback">Looks good!</div>
-            <div className="invalid-feedback">Description is required.</div>
-          </div>
+          <GenericTextInput
+            id="descriptionInput"
+            label="Description"
+            value={editedDescription}
+            isValid={editedDescription.length > 0}
+            invalidMessage="Description is required"
+            onChange={(value) => setEditedDescription(value)} />
         ) : (
           <div>{assignment.description}</div>
         )}
