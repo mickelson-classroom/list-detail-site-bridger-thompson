@@ -11,6 +11,7 @@ export interface Assignment {
   due: string;
   allowedAttempts: number;
   tags: string[];
+  submitType?: string;
 }
 
 export const App = () => {
@@ -21,7 +22,7 @@ export const App = () => {
       points: 10,
       due: "2023-09-08",
       allowedAttempts: 1,
-      tags: []
+      tags: [],
     }
   ]);
   const [selectedAssignment, setSelectedAssignment] = useState<Assignment>();

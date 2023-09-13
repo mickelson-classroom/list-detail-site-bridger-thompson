@@ -1,6 +1,8 @@
 import { FC, useState } from "react";
 import { Assignment } from "./App";
 import GenericTextInput from "./components/GenericTextInput";
+import { SelectInput } from "./components/SelectInput";
+import { RadioInput } from "./components/RadioInput";
 
 
 export const AddAssignment: FC<{
@@ -10,7 +12,14 @@ export const AddAssignment: FC<{
   const [newDescription, setNewDescription] = useState("");
   const [newDueDate, setNewDueDate] = useState<string | undefined>();
   const [newAllowedAttempts, setNewAllowedAttempts] = useState(1)
+  const attemptOptions = ["1", "2", "3"];
+  const submitTypes = ["File", "Text", "None", "Other"]
+  const [newSubmitType, setNewSubmitType] = useState(submitTypes[0])
   const [newPoints, setNewPoints] = useState(10);
+
+  const handleSelectChange = (selectedValue: string) => {
+    setNewAllowedAttempts(Number(selectedValue));
+  };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -21,7 +30,8 @@ export const AddAssignment: FC<{
         points: newPoints,
         due: newDueDate,
         allowedAttempts: newAllowedAttempts,
-        tags: []
+        tags: [],
+        submitType: newSubmitType
       };
       addAssignment(newAssignment)
       setNewTitle("")
@@ -29,6 +39,7 @@ export const AddAssignment: FC<{
       setNewAllowedAttempts(1)
       setNewDueDate("")
       setNewPoints(10)
+      setNewSubmitType(submitTypes[0])
     }
   }
   return (
@@ -49,14 +60,24 @@ export const AddAssignment: FC<{
             <div className="modal-body">
               <form className="text-center mt-3 bg-white needs-validation" onSubmit={submitHandler} noValidate>
                 <div className="text-start">
-                  <div className="mb-3">
-                    <GenericTextInput
-                      id="titleInput"
-                      label="Title"
-                      value={newTitle}
-                      isValid={newTitle.length > 0}
-                      invalidMessage="Title is required"
-                      onChange={(value) => setNewTitle(value)} />
+                  <div className="row mb-3">
+                    <div className="col">
+                      <GenericTextInput
+                        id="titleInput"
+                        label="Title"
+                        value={newTitle}
+                        isValid={newTitle.length > 0}
+                        invalidMessage="Title is required"
+                        onChange={(value) => setNewTitle(value)} />
+                    </div>
+                    <div className="col-auto">
+                      <RadioInput
+                        options={submitTypes}
+                        selectedValue={newSubmitType}
+                        onChange={(v) => setNewSubmitType(v)}
+                        label="Submit Types"
+                        name={"submitTypes"} />
+                    </div>
                   </div>
                   <div className="mb-3">
                     <GenericTextInput
@@ -101,22 +122,13 @@ export const AddAssignment: FC<{
                       </div>
                     </div>
 
-                    <div className="col-md">
-                      <div className="mb-3">
-                        <label htmlFor="attemptsInput" className="form-label">Attempts:</label>
-                        <input
-                          type="number"
-                          className={`form-control ${newAllowedAttempts > 0 ? 'is-valid' : 'is-invalid'}`}
-                          id="attemptsInput"
-                          value={newAllowedAttempts}
-                          onChange={(e) => setNewAllowedAttempts(Number(e.target.value))}
-                          required
-                        />
-                        <div className="invalid-feedback">Attempts must be greater than 0.</div>
-                        <div className="valid-feedback">
-                          Looks good!
-                        </div>
-                      </div>
+                    <div className="col-md-auto">
+                      <SelectInput
+                        options={attemptOptions}
+                        value={newAllowedAttempts.toString()}
+                        onChange={handleSelectChange}
+                        label="Attempts:"
+                      />
                     </div>
                   </div>
                 </div>

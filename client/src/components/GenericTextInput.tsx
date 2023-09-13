@@ -1,3 +1,4 @@
+import { FC } from "react";
 
 interface GenericTextInputProps {
   id: string;
@@ -8,7 +9,7 @@ interface GenericTextInputProps {
   invalidMessage?: string;
 }
 
-const GenericTextInput: React.FC<GenericTextInputProps> = ({
+const GenericTextInput: FC<GenericTextInputProps> = ({
   id,
   label,
   value,

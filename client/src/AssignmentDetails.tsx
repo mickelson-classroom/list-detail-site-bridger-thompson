@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { Assignment } from "./App";
 import { Tags } from "./Tags";
 import GenericTextInput from "./components/GenericTextInput";
+import { SelectInput } from "./components/SelectInput";
 
 export const AssignmentDetails: FC<{
   assignment: Assignment,
@@ -14,6 +15,7 @@ export const AssignmentDetails: FC<{
   const [editedPoints, setEditedPoints] = useState(assignment.points);
   const [editedDue, setEditedDue] = useState(assignment.due);
   const [editedAllowedAttempts, setEditedAllowedAttempts] = useState(assignment.allowedAttempts);
+  const attemptOptions = ["1", "2", "3"];
 
   const setTagsHandler = (tags: string[]) => {
     assignment.tags = tags;
@@ -109,20 +111,16 @@ export const AssignmentDetails: FC<{
           <div>Due Date: {assignment.due}</div>
         )}
         {isEditing ? (
-          <div>
-            <input
-              type="number"
-              className={`form-control ${editedAllowedAttempts > 0 ? 'is-valid' : 'is-invalid'}`}
-              value={editedAllowedAttempts}
-              onChange={(e) => setEditedAllowedAttempts(Number(e.target.value))}
-              required
-            />
-            <div className="valid-feedback">Looks good!</div>
-            <div className="invalid-feedback">Allowed Attempts must be a non-negative number.</div>
-          </div>
+          <SelectInput
+            options={attemptOptions}
+            value={editedAllowedAttempts.toString()}
+            onChange={(v) => setEditedAllowedAttempts(Number(v))}
+            label="Attempts:"
+          />
         ) : (
           <div>Allowed Attempts: {assignment.allowedAttempts}</div>
         )}
+        <div>Submit Type: {assignment.submitType ?? "None"}</div>
         <div>{assignment.tags.join(",")}</div>
       </form>
       <div className="mt-3 mb-1">
